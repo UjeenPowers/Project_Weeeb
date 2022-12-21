@@ -15,8 +15,8 @@ public class Manager_Instantiator : Manager
         switch (type)
         {
             case InstantiateType.Image:
-                var iamge = new UserImage();
-                iamge.Instantiate(ParentTransform);
+                var image = new UserImage();
+                image.Instantiate(ParentTransform);
                 break;
         }
     }
