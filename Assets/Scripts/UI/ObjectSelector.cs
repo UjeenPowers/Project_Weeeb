@@ -4,13 +4,12 @@ using UnityEngine;
 using TMPro;
 using UnityEditor;
 using SimpleFileBrowser;
+using System.Threading.Tasks;
 
 public class ObjectSelector : UIElement
 {
     private TMP_InputField Field;
     private UserImage CurrentImage;
-    // private EasyButton ChangeButton;
-    // private EasyButton RemoveButton;
     public override void Init(GameObject gameObject)
     {
         Field = gameObject.transform.Find("Field").GetComponent<TMP_InputField>();
@@ -26,13 +25,16 @@ public class ObjectSelector : UIElement
 
     private void OnChangeButtonClick()
     {
-        FileBrowser.SetDefaultFilter( ".png" );
-        //StartCoroutine( ShowLoadDialogCoroutine() );
+        if (CurrentImage != null)
+        ShowLoadDialog();
     }
 
-    private void ShowLoadDialog()
+    private async void ShowLoadDialog()
     {
-        //TODO: finish load dialog integration
+        Task<string> t1 = FileDialogWrapper.instance.StartDialog();
+        string name = await t1;
+        //Debug.Log(name);
+        CurrentImage.ChangeImage(name);
     }
 
     private void OnRemoveButtonClick()
