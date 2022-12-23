@@ -12,7 +12,7 @@ public class ObjectSelector : UIElement
     private UserImage CurrentImage;
     public override void Init(GameObject gameObject)
     {
-        Field = gameObject.transform.Find("Field").GetComponent<TMP_InputField>();
+        Field = gameObject.transform.Find("FieldName").GetComponent<TMP_InputField>();
         gameObject.transform.Find("ChangeImage").GetComponent<EasyButton>().OnButtonClick += OnChangeButtonClick;
         gameObject.transform.Find("RemoveImage").GetComponent<EasyButton>().OnButtonClick += OnRemoveButtonClick;
     }
