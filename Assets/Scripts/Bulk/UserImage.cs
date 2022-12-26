@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -9,12 +10,15 @@ public class UserImage : UnityObject
 {
     private static GameObject Prefab =((Resources.Load("ScriptableObjects/Prefabs")) as Prefabs).ImagePrefab;
     public string UserGivenName = "test";
+    public Vector2 Pos {get; private set;}
     private Image Image;
+    public Action<Vector2> OnPosChanged;
     public void Instantiate(Transform parent)
     {
         GameObject = GameObject.Instantiate(Prefab, parent);
         GameObject.transform.Find("Image").GetComponent<ImageHandler>().OnClickAction += OnClick;
         Image = GameObject.transform.Find("Image").GetComponent<Image>();
+        Pos = new Vector2(GameObject.transform.localPosition.x, GameObject.transform.localPosition.y);
 
         Debug.Log("ImageInstantiated");
     }
@@ -30,6 +34,11 @@ public class UserImage : UnityObject
         Debug.Log(SpriteTexture);
         Sprite NewSprite = Sprite.Create(SpriteTexture, new Rect(0, 0, SpriteTexture.width, SpriteTexture.height),new Vector2(0,0), 100.0f);
         Image.sprite = NewSprite;
+    }
+
+    public void ChangePos(Vector2 pos)
+    {
+        GameObject.transform.localPosition = pos;
     }
 
     public Texture2D LoadTexture(string FilePath) {
