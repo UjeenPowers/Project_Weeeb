@@ -19,8 +19,6 @@ public class UserImage : UnityObject
         GameObject.transform.Find("Image").GetComponent<ImageHandler>().OnClickAction += OnClick;
         Image = GameObject.transform.Find("Image").GetComponent<Image>();
         Pos = new Vector2(GameObject.transform.localPosition.x, GameObject.transform.localPosition.y);
-
-        Debug.Log("ImageInstantiated");
     }
 
     private void OnClick()
@@ -30,9 +28,12 @@ public class UserImage : UnityObject
 
     public void ChangeImage(string filePath)
     {
-        Texture2D SpriteTexture = LoadTexture(filePath);
-        Debug.Log(SpriteTexture);
-        Sprite NewSprite = Sprite.Create(SpriteTexture, new Rect(0, 0, SpriteTexture.width, SpriteTexture.height),new Vector2(0,0), 100.0f);
+        Debug.Log(filePath);
+        filePath = Main.instance.UserResources.FindFirstImage();
+        Debug.Log(filePath);
+        Texture2D spriteTexture = LoadTexture(filePath);
+        //Main.instance.UserResources.SaveImage(spriteTexture, "test");
+        Sprite NewSprite = Sprite.Create(spriteTexture, new Rect(0, 0, spriteTexture.width, spriteTexture.height),new Vector2(0,0), 100.0f);
         Image.sprite = NewSprite;
     }
 

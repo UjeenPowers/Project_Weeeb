@@ -16,6 +16,5 @@ public class CreateImageButton : UIElement
     private void CreateImage()
     {
         Main.instance.Manager_Instantiator.Instantiate(InstantiateType.Image);
-        Debug.Log("CreateImage");
     }
 }
