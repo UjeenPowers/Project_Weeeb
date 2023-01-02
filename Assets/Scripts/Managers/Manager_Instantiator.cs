@@ -15,10 +15,24 @@ public class Manager_Instantiator : Manager
         switch (type)
         {
             case InstantiateType.Image:
-                var image = new UserImage();
-                image.Instantiate(ParentTransform);
+                InstantiateImage();
                 break;
         }
+    }
+    
+    public void InstantiateImage()
+    {
+        var image = new UserImage();
+        image.Instantiate(ParentTransform);
+        Main.instance.Manager_Scene.AddImageToScene(image);
+    }
+    public void InstantiateImage(Vector2 pos, string filePath)
+    {
+        var image = new UserImage();
+        image.Instantiate(ParentTransform);
+        image.ChangePos(pos);
+        image.ChangeImage(filePath);
+        Main.instance.Manager_Scene.AddImageToScene(image);
     }
 }
 

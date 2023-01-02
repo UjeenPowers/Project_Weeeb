@@ -13,6 +13,7 @@ public class UserImage : UnityObject
     public Vector2 Pos {get; private set;}
     private Image Image;
     public Action<Vector2> OnPosChanged;
+    public string FilePath;
     public void Instantiate(Transform parent)
     {
         GameObject = GameObject.Instantiate(Prefab, parent);
@@ -28,11 +29,8 @@ public class UserImage : UnityObject
 
     public void ChangeImage(string filePath)
     {
-        Debug.Log(filePath);
-        filePath = Main.instance.UserResources.FindFirstImage();
-        Debug.Log(filePath);
+        FilePath = filePath;
         Texture2D spriteTexture = LoadTexture(filePath);
-        //Main.instance.UserResources.SaveImage(spriteTexture, "test");
         Sprite NewSprite = Sprite.Create(spriteTexture, new Rect(0, 0, spriteTexture.width, spriteTexture.height),new Vector2(0,0), 100.0f);
         Image.sprite = NewSprite;
     }
@@ -40,6 +38,7 @@ public class UserImage : UnityObject
     public void ChangePos(Vector2 pos)
     {
         GameObject.transform.localPosition = pos;
+        Pos = pos;
     }
 
     public Texture2D LoadTexture(string FilePath) {
