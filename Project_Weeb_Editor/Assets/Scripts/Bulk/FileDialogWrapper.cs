@@ -16,24 +16,38 @@ public class FileDialogWrapper : MonoBehaviour
         FileBrowser.SetDefaultFilter( ".png" );
     }
 
-    public Task<string> StartDialog()
+    public Task<string> GetLoadPath() //Returns path to image
     {
         Task<string> t1 = new Task<string>( ()=>
         {
-            //ebug.Log(FileBrowser.Result[0]);
             return FileBrowser.Result[0];
         });
         StartCoroutine(ShowLoadDialogCoroutine(t1));
         return t1;
     }
 
-    
+    public Task<string> GetSavePath() //Returns path for saving obj
+    {
+        Task<string> t1 = new Task<string>( ()=>
+        {
+            return FileBrowser.Result[0];
+        });
+        StartCoroutine(ShowLoadDialogCoroutine(t1));
+        return t1;
+    }
 
     IEnumerator ShowLoadDialogCoroutine(Task t1)
 	{
 		yield return FileBrowser.WaitForLoadDialog( FileBrowser.PickMode.FilesAndFolders, false, null, null, "Load Files and Folders", "Load" );
-        //FileBrowserHelpers.ReadBytesFromFile(FileBrowser.Result[0]);
+		if( FileBrowser.Success )
+		{
+            t1.Start();
+		}
+	}
 
+    IEnumerator ShowSaveDialogCoroutine(Task t1)
+	{
+		yield return FileBrowser.WaitForSaveDialog( FileBrowser.PickMode.FilesAndFolders, false, null, null, "Load Files and Folders", "Load" );
 		if( FileBrowser.Success )
 		{
             t1.Start();

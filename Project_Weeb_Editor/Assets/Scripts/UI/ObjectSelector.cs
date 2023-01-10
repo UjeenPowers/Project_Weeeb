@@ -63,7 +63,7 @@ public class ObjectSelector : UIElement
 
     private async void ShowLoadDialog()
     {
-        Task<string> t1 = FileDialogWrapper.instance.StartDialog();
+        Task<string> t1 = FileDialogWrapper.instance.GetLoadPath();
         string name = await t1;
         CurrentImage.ChangeImage(name);
     }
