@@ -9,6 +9,10 @@ public class Manager_Packs : Manager
     {
         Task<string> t1 = FileDialogWrapper.instance.GetSavePath();
         string name = await t1;
-        Debug.Log($"Savec path : {name}");
+        Debug.Log($"Saved path : {name}");
+    }
+    private void CompilePackToZip()
+    {
+        
     }
 }

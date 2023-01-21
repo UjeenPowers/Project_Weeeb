@@ -55,17 +55,14 @@ public class ObjectSelector : UIElement
         
     }
 
-    private void OnChangeButtonClick()
+    private async void OnChangeButtonClick()
     {
         if (CurrentImage != null)
-        ShowLoadDialog();
-    }
-
-    private async void ShowLoadDialog()
-    {
-        Task<string> t1 = FileDialogWrapper.instance.GetLoadPath();
-        string name = await t1;
-        CurrentImage.ChangeImage(name);
+        {
+            Task<string> t1 = FileDialogWrapper.instance.GetLoadPath(); //Dialog for selecting image
+            string name = await t1;
+            CurrentImage.ChangeImage(name); 
+        }
     }
 
     private void OnRemoveButtonClick()
