@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectPackLocationButton :  UIElement
+public class SelectPackButton :  UIElement
 {
     public override void Init(GameObject gameObject)
     {
-        gameObject.GetComponent<EasyButton>().OnButtonClick += SelectPackLocation;
+        gameObject.GetComponent<EasyButton>().OnButtonClick += SelectPack;
     }
     
-    private void SelectPackLocation()
+    private void SelectPack()
     {
         // Debug.Log("starting saving pack");
         Main.instance.UserResources.SelectPackLocation();

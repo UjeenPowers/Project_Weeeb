@@ -14,6 +14,7 @@ public class UserResources
         Task<string> t1 = FileDialogWrapper.instance.GetSavePath();
         string path = await t1;
         CurrentPackLocation = path;
+        Debug.Log(path);
     }
     public async void CreatePackLocation()
     {
