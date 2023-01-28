@@ -9,6 +9,7 @@ public class Manager_UI : Manager
     private LoadSceneButton LoadSceneButton;
     private PackSaveButton PackSaveButton;
     private SelectPackButton SelectPackButton;
+    private CreatePackButton CreatePackButton;
     public ObjectSelector ObjectSelector {get; private set;}
     public Manager_UI()
     {
@@ -28,6 +29,9 @@ public class Manager_UI : Manager
 
         SelectPackButton = new SelectPackButton();
         SelectPackButton.Init(UItransform.Find("SelectPack").gameObject);
+
+        CreatePackButton = new CreatePackButton();
+        CreatePackButton.Init(UItransform.Find("CreatePack").gameObject);
 
         ObjectSelector = new ObjectSelector();
         ObjectSelector.Init(UItransform.Find("ObjectSelector").gameObject);
